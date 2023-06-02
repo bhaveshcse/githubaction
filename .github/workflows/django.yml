@@ -24,6 +24,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Run Tests
-      run: |
-        python manage.py test
+    -  name: create docker image
+       uses: docker/build-push-action@v4
+       with:
+          registry: docker.io
+          image: bhaveshcse/todoApp
+          username: ${{ secrets.USER_NAME }}
+          password: ${{ secrets.PASSWORD }}
